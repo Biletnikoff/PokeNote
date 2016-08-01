@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import Mui from 'material-ui/styles/MuiThemeProvider'
+
 import Button from './Button.js';
 import logo from './Pokeball.png';
-import {List, ListItem} from 'material-ui/List';
 import NoteList from './NoteList.js'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import './App.css';
@@ -29,19 +28,21 @@ class App extends Component {
   edit(updatedNote, updateIndex) {
     let theSaves = this.state.items.map(function(note, index) {
       if (updateIndex === index) {
-        return [note[0], updatedNote]
+        return [note[0], updatedNote];
       }
-      return note
+      return note;
     });
 
-    this.props.store.save(theSaves)
-    this.setState({ items: theSaves })
+    this.props.store.save(theSaves);
+    this.setState({ items: theSaves });
   }
 
-  remove(noteData) {
-    this.save(this.state.items.filter(function(data) {
-      return noteData !== data;
-    }));
+  remove(selectedIndex) {
+    let theRemove = this.state.items.filter(function(data, index) {
+      return selectedIndex !== index;
+    });
+    this.props.store.save(theRemove);
+    this.setState({ items: theRemove});
   }
   render() {
     return (
@@ -54,7 +55,7 @@ class App extends Component {
         notes={this.state.items}
         save={this.save}
         edit={this.edit}
-        remove={this.delete}
+        remove={this.remove}
         />
         <Button
         save={this.save}

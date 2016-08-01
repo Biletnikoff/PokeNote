@@ -61,6 +61,10 @@ $primary: #436a6b;*/
     padding: 10px 30px;
     text-transform: uppercase;
 }
+.note-display {
+  display: flex;
+  flex-direction: column;
+}
 
 .note-name {
   display: block;
@@ -73,9 +77,9 @@ $primary: #436a6b;*/
 
 .note-content {
   border-radius: 10px;
-  height: 350px;
-  width: 300px;
-  margin: 5%;
+  height: 70%;
+  width: 88%;
+  margin: 4%;
   border: 2px solid #7ee8af;
 }
 
@@ -96,7 +100,7 @@ $primary: #436a6b;*/
 }
 
 .circle-button {
-    margin-left: 45%;
+    margin-left: 47%;
     margin-bottom: -10%;
     box-shadow: 0 0 0 3px #008891;
     color: #7ee8af;
@@ -108,24 +112,35 @@ $primary: #436a6b;*/
 }
 ul {
   padding-top: 160px;
+  padding-left: 0;
   padding-bottom: 30%;
   margin-top: auto;
   height: 60%;
   overflow-y: scroll;
   overflow-x: hidden;
   margin:auto;
+
 }
 
-li:active, li:hover{
+li:hover + .addNote {
+    display:none;
+  }
+
+
+
+li:active, li:hover {
   background-color: #D7D7D7;
 }
 li {
-  padding-top: 2%;
-  width:90%;
+  padding-top: 3%;
   display:block;
-  padding-bottom:2%;
+  padding-bottom:3%;
   border-bottom: 1px solid #D7D7D7;
   list-style-type: none;
   display:list-item;
+  color:#436a6b
 
+}
+circle,rect {
+  display: none;
 }

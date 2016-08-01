@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { ModalContainer, ModalDialog } from 'react-modal-dialog';
-
 import Modal from './Components/Modal.js';
 
 export default class NoteEntry extends Component {
@@ -35,51 +34,24 @@ export default class NoteEntry extends Component {
       this.setState({showEdit: true});
       console.log('working');
     }
-    // componentWillReceiveProps() {
-    //  this.handleModalType();
-    // }
-    // componentShouldUpdate() {
-    //   this.props.handleShow()
-    // }
+    handleRemove = () => {
+      this.setState({isShowingModal: false})
+      console.log('in')
+      this.props.remove(this.props.index);
+    }
 
-
-      render() {
-        let content;
-        let button;
-        if (this.props.type === 'view') {
-          content = <textarea className='note-content' id={`modaledit${this.props.index}`} defaultValue={this.props.note[1]}></textarea>
-          button = <button onClick={this.handleClose} className='button-grad pokebutton circle-button'>x</button>;
-        } else {
-
-          // edit
-          content = (
-            <div>
-            <input className='note-name'></input>
-            <textarea className='note-content'>{this.props.note[1]}</textarea>
-            <input className='note-name'></input>
-            <p className='text'>Content</p>
-            </div>
-          )
-          button = (
-            <div>
-            <button className='pokebutton button-grad' onClick={this.handleClose}>OK</button>
-            <button className='cancel' onClick={this.handleClose}>CANCEL</button>
-            </div>
-          )
-        }
-
+    render() {
       return (
-        <div>
+        <div className='note-display'>
           <li onClick={this.handleClick}>{this.props.note[0]}</li>
          {
            this.state.isShowingModal &&
             <ModalContainer onClose={this.handleCloseEscape}>
-              <ModalDialog  onClick={this.handleCloseEscape} style={{backgroundColor:'#F2F2F2'}}>
+              <ModalDialog  onClose={this.handleCloseEscape} style={{backgroundColor:'#F2F2F2', width:'88%', height:'65%', marginLeft:'1%', paddingBottom:'10%'}}>
                 <p className='text'>{this.props.note[0]}</p>
-                <div>
-                {content}
-                {button}
-                </div>
+                <textarea className='note-content' id={`modaledit${this.props.index}`} defaultValue={this.props.note[1]}></textarea>
+                <button onClick={this.handleClose} className='button-grad pokebutton circle-button'>✓</button>
+                <button onClick={this.handleRemove} className='button-grad pokebutton' style={{margin:'32%'}}>  delete  </button>
               </ModalDialog>
             </ModalContainer>
           }
